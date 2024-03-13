@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "Cluster_ejemplo"
+  site-url: "https://msalazarcgeo.github.io/Cluster_ejemplo"
+  description: "Este es un ejemplos de distintos algoritmos de clusterización"
+  repo-branch: main
+  repo-url: "https://github.com/msalazarcgeo/Cluster_ejemplo"
