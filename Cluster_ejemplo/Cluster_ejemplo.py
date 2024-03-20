@@ -3,6 +3,14 @@
 # %% auto 0
 __all__ = ['data_points']
 
+# %% ../nbs/00_clusters.ipynb 2
+from nbdev.showdoc import *
+import sklearn
+import random 
+import numpy as np
+import shapely
+
+
 # %% ../nbs/00_clusters.ipynb 4
 class data_points:
     """Una clase que contiene a los datos"""
@@ -17,6 +25,18 @@ class data_points:
     def get_points(self):
         """Una funcion que para obtener los puntos"""
         return self.Points
+
+    def get_Multypoint(self):
+        """Regresa un objeto MultiPoint con los puntos"""
+        return shapely.geometry.MultiPoint(self.Points)
+    
+    def get_X(self):
+        """Regresa las coordenadas X"""
+        return [x.x for x in self.Points]
+
+    def get_Y(self):
+        """Regresa las coordenadas X"""
+        return [x.x for x in self.Points]
 
             
     
