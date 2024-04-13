@@ -4,4 +4,13 @@ on:  [workflow_dispatch, pull_request, push]
 jobs:
   test:
     runs-on: ubuntu-latest
-    steps: [uses: fastai/workflows/nbdev-ci@master]
+    steps: 
+    	
+    	- uses: fastai/workflows/nbdev-ci@master
+    	- name: Set python fastai 
+    	
+    	- name: Install More pyhton dependencies
+    	  run: python -m pip install -U matplotlib
+    	
+    	
+    
