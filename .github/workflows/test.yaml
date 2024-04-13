@@ -1,26 +1,4 @@
 
-inputs:
-  pre:
-    description: 'Install prerelease nbdev/execnb from master?'
-    required: false
-    default: ''
-  version:
-    description: 'Version of python to set up'
-    required: false
-    default: '3.9'
-  skip_test:
-    description: 'Skip tests?'
-    required: false
-    default: ''
-  flags:
-    description: 'Space separated list of nbdev test flags to run that are normally ignored'
-    required: false
-    default: ''
-  torch_cpu:
-    description: "Install PyTorch CPU instead of PyTorch Cuda.  Has no effect if PyTorch isn't a requirement.  Enabled by defaut."
-    required: false
-    default: true
-
 name: Test CI
 on:  [workflow_dispatch, pull_request, push]
 jobs:
@@ -28,37 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: ${{ inputs.version }}
-          cache: "pip"
-          cache-dependency-path: settings.ini
-      - name: Test with nbdev
-        env:
-          USE_PRE: ${{ inputs.pre }}
-          SKIP_TEST: ${{ inputs.skip_test }}
-          FLAGS: ${{ inputs.flags }}
-          TORCH_CPU: "${{ inputs.torch_cpu }}"
+      - uses: actions/setup-python@v3
+      - name: Install Dependencies
         shell: bash
         run: |
-          set -ux
-          echo "Install nbdev and dependencies..."
           python -m pip install --upgrade pip
-          if [ $USE_PRE ]; then
-            pip install -U git+https://github.com/fastai/fastcore.git
-            pip install -U git+https://github.com/fastai/ghapi.git
-            pip install -U git+https://github.com/fastai/execnb.git
-            pip install -U git+https://github.com/fastai/nbdev.git
-          else
-            pip install -U nbdev
-          fi
+          pip install -Uq git+https://github.com/fastai/ghapi.git # you need this for enabling pages
+          pip install -Uq git+https://github.com/fastai/fastcore.git
+          pip install -Uq git+https://github.com/fastai/execnb.git
+          pip install -e ".[dev]"
           pip install -Uq matplotlib
-          echo "Doing editable install..."
-          if [ $TORCH_CPU ]; then
-            test -f setup.py && pip install -e ".[dev]" --extra-index-url https://download.pytorch.org/whl/cpu
-          else
-            test -f setup.py && pip install -e ".[dev]"
-          fi
           echo "Check we are starting with clean git checkout"
           if [[ `git status --porcelain -uno` ]]; then
             git diff
