@@ -1,5 +1,4 @@
-name: Test CI
-on:  [workflow_dispatch, pull_request, push]
+
 inputs:
   pre:
     description: 'Install prerelease nbdev/execnb from master?'
@@ -22,6 +21,8 @@ inputs:
     required: false
     default: true
 
+name: Test CI
+on:  [workflow_dispatch, pull_request, push]
 jobs:
   test:
     runs-on: ubuntu-latest
