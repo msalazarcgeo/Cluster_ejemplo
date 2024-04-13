@@ -3,7 +3,9 @@
 # %% auto 0
 __all__ = ['data_points', 'Clusters']
 
-# %% ../nbs/00_clusters.ipynb 3
+# %% ../nbs/00_clusters.ipynb 2
+import warnings
+warnings.filterwarnings('ignore')
 from nbdev.showdoc import *
 import matplotlib
 import sklearn
@@ -14,7 +16,7 @@ import shapely
 from sklearn.cluster import DBSCAN, HDBSCAN, OPTICS, KMeans
 import matplotlib.pyplot as plt
 
-# %% ../nbs/00_clusters.ipynb 5
+# %% ../nbs/00_clusters.ipynb 4
 class data_points:
     """Una clase que contiene a los datos"""
     def __init__(self, n, min_x = 0, min_y = 0, max_x= 1, max_y=1, seed= None):
@@ -66,7 +68,7 @@ class data_points:
     
     
 
-# %% ../nbs/00_clusters.ipynb 18
+# %% ../nbs/00_clusters.ipynb 17
 class Clusters:
     """Clase para generar los clusters a partir de un objeto de la clase data_points
     
