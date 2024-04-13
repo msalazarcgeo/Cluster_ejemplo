@@ -20,7 +20,7 @@ jobs:
         run: |
           python -m pip install -Uq matplotlib
           python -m pip install -Uq setuptools
-          
+          python -m pip install -Uq scikit-learn
       - name: Test the package
         shell: bash
         run: |
