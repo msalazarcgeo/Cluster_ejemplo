@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - uses: fastai/workflows/quarto-ghp@master
-        - name: Quarto instalation
+          name: Quarto instalation
         
         - name: Install More pyhton dependencies
           run: python -m pip install -U matplotlib
