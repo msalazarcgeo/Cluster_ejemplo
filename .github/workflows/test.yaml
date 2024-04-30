@@ -22,7 +22,7 @@ jobs:
           python -m pip install -Uq setuptools
           python -m pip install -Uq scikit-learn
           python -m pip install -Uq shapely
-
+          python -m pip install -Uq pyproj
       - name: Test the package
         shell: bash
         run: |
